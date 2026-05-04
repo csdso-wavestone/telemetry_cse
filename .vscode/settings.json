@@ -1,0 +1,9 @@
+{
+    "chat.tools.terminal.autoApprove": {
+        "true": true,
+        "/^cd /workspaces/telemetry_cse && for f in dashboard/config\\.php dashboard/dashboard\\.php dashboard/api_fetch\\.php dashboard/history\\.php dashboard/settings\\.php dashboard/maintenance\\.php dashboard/store_data\\.php; do php -l \"\\$f\"; done$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
+}
