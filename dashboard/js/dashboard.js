@@ -161,6 +161,10 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchRealtime();
     fetchHistory();
     loadMaintenance();
-    // Poll for live data periodically
-    setInterval(fetchRealtime, realtimeInterval);
+
+    // Attach click handler to Refresh button for manual data updates
+    const refreshBtn = document.getElementById('refreshBtn');
+    if (refreshBtn) {
+        refreshBtn.addEventListener('click', fetchRealtime);
+    }
 });

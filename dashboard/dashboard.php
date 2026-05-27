@@ -50,7 +50,10 @@ include '../includes/navbar.html';
     <div class="row">
         <div class="col-lg-6 mb-4">
             <div class="card">
-                <div class="card-header">Real-time data</div>
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <span>Real-time data</span>
+                    <button type="button" id="refreshBtn" class="btn btn-sm btn-primary">Refresh</button>
+                </div>
                 <div class="card-body">
                     <p><strong>Status:</strong> <span id="reactorStatus">Unknown</span></p>
                     <p><strong>Temperature:</strong> <span id="reactorTemperature">N/A</span></p>
