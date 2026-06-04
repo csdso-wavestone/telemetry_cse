@@ -63,6 +63,74 @@ function azureRequest(string $url): ?string {
     return $result;
 }
 
+function parseAzureBlobListXml(string $xml): array {
+    $files = [];
+
+    if (function_exists('simplexml_load_string')) {
+        $contents = simplexml_load_string($xml);
+        if ($contents !== false && isset($contents->Blobs->Blob)) {
+            foreach ($contents->Blobs->Blob as $blob) {
+                $name = (string) $blob->Name;
+                if (substr($name, -5) !== '.json') {
+                    continue;
+                }
+                $timestamp = (string) $blob->Properties->{'Last-Modified'};
+                $files[] = [
+                    'name' => $name,
+                    'timestamp' => $timestamp ?: 'N/A',
+                ];
+            }
+        }
+        return $files;
+    }
+
+    if (class_exists('DOMDocument')) {
+        $doc = new DOMDocument();
+        libxml_use_internal_errors(true);
+        if ($doc->loadXML($xml)) {
+            $nodes = $doc->getElementsByTagName('Blob');
+            foreach ($nodes as $blob) {
+                $nameNode = $blob->getElementsByTagName('Name')->item(0);
+                $tsNode = $blob->getElementsByTagName('Last-Modified')->item(0);
+                if (!$nameNode) {
+                    continue;
+                }
+                $name = $nameNode->nodeValue;
+                if (substr($name, -5) !== '.json') {
+                    continue;
+                }
+                $files[] = [
+                    'name' => $name,
+                    'timestamp' => $tsNode ? $tsNode->nodeValue : 'N/A',
+                ];
+            }
+        }
+        libxml_clear_errors();
+        return $files;
+    }
+
+    preg_match_all('/<Blob>(.*?)<\/Blob>/si', $xml, $matches);
+    foreach ($matches[1] as $blobBlock) {
+        if (!preg_match('/<Name>(.*?)<\/Name>/si', $blobBlock, $nameMatch)) {
+            continue;
+        }
+        $name = trim($nameMatch[1]);
+        if (substr($name, -5) !== '.json') {
+            continue;
+        }
+        $timestamp = 'N/A';
+        if (preg_match('/<Last-Modified>(.*?)<\/Last-Modified>/si', $blobBlock, $timeMatch)) {
+            $timestamp = trim($timeMatch[1]) ?: 'N/A';
+        }
+        $files[] = [
+            'name' => $name,
+            'timestamp' => $timestamp,
+        ];
+    }
+
+    return $files;
+}
+
 function listAzureBlobs(string $baseUrl, string $sasToken): ?array {
     $query = ltrim($sasToken, '?');
     $url = $baseUrl . '?restype=container&comp=list&' . $query;
@@ -71,24 +139,7 @@ function listAzureBlobs(string $baseUrl, string $sasToken): ?array {
         return null;
     }
 
-    $contents = simplexml_load_string($xml);
-    if ($contents === false || !isset($contents->Blobs->Blob)) {
-        return [];
-    }
-
-    $files = [];
-    foreach ($contents->Blobs->Blob as $blob) {
-        $name = (string) $blob->Name;
-        if (substr($name, -5) !== '.json') {
-            continue;
-        }
-        $timestamp = (string) $blob->Properties->{'Last-Modified'};
-        $files[] = [
-            'name' => $name,
-            'timestamp' => $timestamp ?: 'N/A',
-        ];
-    }
-
+    $files = parseAzureBlobListXml($xml);
     usort($files, fn($a, $b) => strcmp($b['name'], $a['name']));
     return $files;
 }
