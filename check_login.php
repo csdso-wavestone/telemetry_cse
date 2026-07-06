@@ -2,7 +2,7 @@
 
 $page_title = 'Check login';
 
-include 'includes/header.html';
+include 'includes/header.php';
 
 include 'mysqli_connect.php';
 
@@ -24,7 +24,7 @@ else{
         exit;
     }
     else{
-        include 'includes/navbar.html';
+        include 'includes/navbar.php';
         include 'includes/notlogged.php';
         
     }

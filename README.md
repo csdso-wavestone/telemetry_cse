@@ -62,10 +62,10 @@ telemetry_cse-main/
 │   └── README.md              # API-specific documentation
 │
 ├── includes/
-│   ├── header.html            # HTML <head>, Bootstrap CSS imports
+│   ├── header.php            # HTML <head>, Bootstrap CSS imports
 │   ├── footer.html            # Closing scripts (Bootstrap JS, jQuery)
-│   ├── navbar.html            # Top navigation bar
-│   ├── login.html             # Login form partial
+│   ├── navbar.php            # Top navigation bar
+│   ├── login.php             # Login form partial
 │   ├── registration.html      # Registration form partial
 │   ├── logged.php             # Hero section shown to authenticated users
 │   ├── notlogged.php          # Hero section for unauthenticated visitors

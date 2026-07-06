@@ -20,6 +20,8 @@ if (!isset($_SESSION['username'])) {
     exit;
 }
 
+$base_url = "/dashboard";
+
 $maintenancePath = __DIR__ . '/maintenance.json';
 
 // Handle creating a new maintenance note

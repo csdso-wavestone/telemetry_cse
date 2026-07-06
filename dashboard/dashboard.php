@@ -11,7 +11,7 @@
  *   history.php, maintenance.php, store_data.php).
  *
  * Interconnections:
- *   - Includes `../includes/header.html` and `../includes/navbar.html`
+ *   - Includes `../includes/header.php` and `../includes/navbar.php`
  *     to reuse site-wide layout and session initialization.
  *   - The JavaScript client `js/dashboard.js` calls:
  *       - `api_fetch.php` to fetch live reactor JSON and trigger
@@ -33,9 +33,11 @@ if (!isset($_SESSION['username'])) {
     exit;
 }
 
+$base_url = "/dashboard";
+
 $page_title = 'Reactor Dashboard';
-include '../includes/header.html';
-include '../includes/navbar.html';
+include '../includes/header.php';
+include '../includes/navbar.php';
 ?>
 
 <div class="container py-4">

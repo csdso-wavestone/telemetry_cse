@@ -1,11 +1,11 @@
 <section id="hero" class="hero section">
     <div class="hero-bg">
-      <img src="./assets/img/Picture1.jpg" alt="">
+      <img src="<?php echo (isset($base_url)) ? $base_url : '.'; ?>/assets/img/Picture1.jpg" alt="">
     </div>
         <div class="container-fluid loginouter">
             <div class="card bg-light mb-3">
                 <div class="card-body">
-            <form action="check_login.php" method="POST">
+            <form action="<?php echo (isset($base_url)) ? $base_url : '.'; ?>/check_login.php" method="POST">
                 Username:<br>
                 <input type="text" name="username"><br>
                 Password:<br>

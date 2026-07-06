@@ -1,6 +1,6 @@
 <?php
 
-include 'includes/header.html';
+include 'includes/header.php';
 
 include 'mysqli_connect.php';
 
@@ -9,7 +9,7 @@ if (session_status() == PHP_SESSION_ACTIVE){
 	session_destroy();
 }
 
-include 'includes/navbar.html';
+include 'includes/navbar.php';
 
 if (!isset ($_SESSION['username'])){
 	header ('location: index.php');

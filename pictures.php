@@ -4,9 +4,9 @@ $page_title = "Pictures";
 
 include 'mysqli_connect.php';
 
-include 'includes/header.html';
+include 'includes/header.php';
 
-include 'includes/navbar.html';
+include 'includes/navbar.php';
 
 if (isset ($_SESSION ['username'])){
     include 'includes/navbar_pictures.html';

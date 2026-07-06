@@ -27,6 +27,8 @@ if (!isset($_SESSION['username'])) {
     exit;
 }
 
+$base_url = "/dashboard";
+
 $settingsPath = __DIR__ . '/settings.json';
 $azureBlobUrl = '';
 $azureSasToken = '';

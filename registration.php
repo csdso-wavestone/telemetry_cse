@@ -2,12 +2,12 @@
 
 $page_title = "Registration";
 
-include 'includes/header.html';
+include 'includes/header.php';
 
-include 'includes/navbar.html';
+include 'includes/navbar.php';
 
 if (isset ($_SESSION['username'])){
-	echo "Logged in with name '" . $_SESSION['username'] . "'. You can <a href='logout.php'>logout</a>";
+	echo "Logged in with name '" . $_SESSION['username'] . "'. You can <a href='/logout.php'>logout</a>";
 }
 else{
     include 'includes/registration.html';

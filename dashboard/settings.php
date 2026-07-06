@@ -25,9 +25,11 @@ if (!isset($_SESSION['username'])) {
     exit;
 }
 
+$base_url = "/dashboard";
+
 $page_title = 'Dashboard Settings';
-include '../includes/header.html';
-include '../includes/navbar.html';
+include '../includes/header.php';
+include '../includes/navbar.php';
 
 $settingsPath = __DIR__ . '/settings.json';
 $settings = [];

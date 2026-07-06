@@ -4,9 +4,9 @@ $page_title = "Check registration";
 
 include 'mysqli_connect.php';
 
-include 'includes/header.html';
+include 'includes/header.php';
 
-include 'includes/navbar.html';
+include 'includes/navbar.php';
 
 if (isset ($_SESSION['username'])){
 	header('location: index.php');
