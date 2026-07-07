@@ -10,6 +10,8 @@ if (isset ($_SESSION['username'])){
 	echo "You are already logged in as ". $_SESSION['username'] ."! You can " . "<a href='logout.php'>" . "logout" . "</a>";
 }
 else{
+    include 'mysqli_connect.php';
+
     if (isset($_POST['username']) && isset($_POST['pass'])) {
         $username = $_POST['username'];
         $password = $_POST['pass'];
@@ -29,7 +31,7 @@ else{
         }
     }
 
-mysqli_close($connection);
+    mysqli_close($connection);
 ?>
 <section id="hero" class="hero section">
     <div class="hero-bg">
