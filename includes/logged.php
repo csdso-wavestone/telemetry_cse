@@ -8,7 +8,7 @@
           <div class="d-flex flex-column justify-content-center align-items-center">
 
 <?php
-echo "You are logged in with name '" . $row['users_username'] . "', please go to " . '<a href="dashboard/dashboard.php">Dashboard</a>';
+echo "You are logged in with name '" . $row['users_username'] . "', please go to " . '<a href="/dashboard.php">Dashboard</a>';
 
 ?>          </div>
 </div>
