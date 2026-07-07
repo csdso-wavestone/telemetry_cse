@@ -63,5 +63,139 @@
 }
 
 
+.dashboard-hero {
+    background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%);
+    color: white;
+    border-radius: 1rem;
+    padding: 1.75rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 25px 50px rgba(13, 110, 253, 0.12);
+}
+
+.dashboard-hero h2 {
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.dashboard-hero p {
+    opacity: 0.85;
+    margin-bottom: 0;
+}
+
+.dashboard-card {
+    border: none;
+    border-radius: 1rem;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+}
+
+.status-summary {
+    min-width: 160px;
+    text-align: center;
+    border-radius: 1rem;
+    padding: 0.8rem 1rem;
+}
+
+.status-ok {
+    background: #d1e7dd;
+    color: #0f5132;
+}
+
+.status-warning {
+    background: #fff3cd;
+    color: #664d03;
+}
+
+.status-critical {
+    background: #f8d7da;
+    color: #842029;
+}
+
+.summary-table {
+    width: max-content;
+    min-width: 100%;
+    table-layout: fixed;
+}
+
+.summary-table th,
+.summary-table td {
+    border-top: none;
+    padding: 0.75rem 1rem;
+    vertical-align: middle;
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    min-width: 140px;
+}
+
+.summary-table th {
+    font-weight: 700;
+    background: rgba(248, 249, 250, 0.98);
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.summary-table td {
+    font-weight: 400;
+    max-width: none;
+}
+
+.summary-table th .col-label {
+    display: inline-block;
+    max-width: calc(100% - 12px);
+    vertical-align: middle;
+}
+
+.summary-table th .col-resizer {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 12px;
+    height: 100%;
+    cursor: col-resize;
+    user-select: none;
+}
+
+.summary-table th {
+    position: sticky;
+    top: 0;
+    overflow: visible;
+}
+
+.table-responsive {
+    overflow-x: auto;
+    overflow-y: auto;
+}
+
+.summary-table tr.status-ok td {
+    background: #e9f7ef;
+}
+
+.summary-table tr.status-warning td {
+    background: #fff7e0;
+}
+
+.summary-table tr.status-critical td {
+    background: #fde2e1;
+}
+
+.summary-status {
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.code-preview {
+    background: #0f172a;
+    color: #f8fafc;
+    border-radius: 0.8rem;
+    padding: 1rem;
+    overflow-x: auto;
+    cursor: default;
+}
+
+.card-header {
+    font-weight: 700;
+}
 
 
