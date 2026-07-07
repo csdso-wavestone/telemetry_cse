@@ -25,9 +25,9 @@ else{
             exit;
         }
         else{
-            $error = "Username or password incorrect. Please try again."
+            $error = "Username or password incorrect. Please try again.";
+        }
     }
-}
 
 mysqli_close($connection);
 
