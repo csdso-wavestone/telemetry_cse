@@ -21,7 +21,7 @@ A PHP web application for real-time reactor telemetry monitoring. Authenticated 
 
 - **Session-based authentication** — registration, login, and logout with PHP sessions; all dashboard routes are protected.
 - **Live reactor metrics** — the dashboard polls a configurable API endpoint (`api_base_url`) and displays status, temperature, pressure, alerts, and a full sensor-detail table.
-- **Snapshot storage** — each data fetch is stored as a timestamped JSON file, either locally (`dashboard/storage/`) or in Azure Blob Storage when credentials are configured.
+- **Snapshot storage** — each data fetch is stored as a timestamped JSON file, either locally (`/storage/`) or in Azure Blob Storage when credentials are configured.
 - **Historical file browser** — lists saved snapshots, lets users click to inspect full JSON contents, and renders a summary table across all files.
 - **Maintenance notes** — users can add plain-text maintenance notes that are persisted server-side and displayed in a live list.
 - **Settings UI** — admins can update the API base URL, polling interval, and Azure Blob SAS credentials without editing files manually.
@@ -41,17 +41,14 @@ telemetry_cse-main/
 ├── mysqli_connect.php         # Shared DB connection
 ├── sql.sql                    # Database schema (users table)
 │
-├── dashboard/
-│   ├── dashboard.php          # Main dashboard UI
-│   ├── api_fetch.php          # Fetches live reactor JSON & triggers storage
-│   ├── store_data.php         # Writes JSON snapshots locally or to Azure
-│   ├── history.php            # Lists and retrieves saved snapshot files
-│   ├── maintenance.php        # CRUD for maintenance notes
-│   ├── settings.php           # Settings UI (reads/writes settings.json)
-│   ├── settings.json          # Runtime config (gitignored in production)
-│   ├── maintenance.json       # Persisted maintenance notes
-│   └── js/
-│       └── dashboard.js       # Client-side polling, rendering, interactions
+├── dashboard.php          # Main dashboard UI
+├── api_fetch.php          # Fetches live reactor JSON & triggers storage
+├── store_data.php         # Writes JSON snapshots locally or to Azure
+├── history.php            # Lists and retrieves saved snapshot files
+├── maintenance.php        # CRUD for maintenance notes
+├── settings.php           # Settings UI (reads/writes settings.json)
+├── settings.json          # Runtime config (gitignored in production)
+├── maintenance.json       # Persisted maintenance notes
 │
 ├── enterprise_b_api/          # Mock reactor data provider
 │   ├── index.php              # GET — returns generated or override JSON
@@ -75,6 +72,7 @@ telemetry_cse-main/
 │
 ├── assets/
 │   ├── css/main.css           # Custom styles
+│   └── js/dashboard.js       # Client-side polling, rendering, interactions
 │   └── vendor/                # Bootstrap, Bootstrap Icons, AOS
 │
 ├── css/index.css              # Additional index-page styles
@@ -140,7 +138,7 @@ php -S localhost:8080
 
 ### 5. Configure dashboard settings
 
-Navigate to **Settings** from the dashboard, or edit `dashboard/settings.json` directly:
+Navigate to **Settings** from the dashboard, or edit `settings.json` directly:
 
 ```json
 {
@@ -151,13 +149,13 @@ Navigate to **Settings** from the dashboard, or edit `dashboard/settings.json` d
 }
 ```
 
-Leave `azure_blob_url` and `azure_sas_token` empty to store snapshots locally in `dashboard/storage/`.
+Leave `azure_blob_url` and `azure_sas_token` empty to store snapshots locally in `storage/`.
 
 ---
 
 ## Azure Blob Storage 
 
-When `azure_blob_url` and `azure_sas_token` are provided in `dashboard/settings.json`, each sensor snapshot is uploaded to Azure Blob Storage instead of being written to disk. Leave both fields empty to fall back to local file storage.
+When `azure_blob_url` and `azure_sas_token` are provided in `settings.json`, each sensor snapshot is uploaded to Azure Blob Storage instead of being written to disk. Leave both fields empty to fall back to local file storage.
 
 ---
 

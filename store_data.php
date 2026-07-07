@@ -4,13 +4,13 @@
  *
  * Purpose:
  *   Generic endpoint that accepts POSTed JSON payloads and persists
- *   them either to local storage (`dashboard/storage`) or to Azure
+ *   them either to local storage (`storage`) or to Azure
  *   Blob storage when configured via `settings.json`.
  *
  * Interconnections:
  *   - Used when an external client or the UI wants to push a JSON
  *     snapshot into the same history pipeline used by `api_fetch.php`.
- *   - Reads `dashboard/settings.json` to determine whether to try an
+ *   - Reads `settings.json` to determine whether to try an
  *     Azure upload (SAS token) or fallback to local filesystem.
  */
 

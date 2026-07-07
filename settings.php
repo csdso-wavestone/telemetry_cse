@@ -4,32 +4,30 @@
  *
  * Purpose:
  *   Provides a small UI for changing dashboard behaviour. Settings are
- *   stored locally in `dashboard/settings.json` and are read by
+ *   stored locally in `settings.json` and are read by
  *   `api_fetch.php` and `store_data.php` to control:
  *     - `api_base_url`: where to fetch live reactor JSON from
  *     - `poll_interval`: deprecated
  *     - `azure_blob_url` and `azure_sas_token`: optional Azure Blob
  *       configuration used to upload saved JSON files remotely. If the
  *       SAS token and blob URL are empty, files are stored locally in
- *       `dashboard/storage` instead.
+ *       `storage` instead.
  *
  * Interconnections:
- *   - Writes settings to `dashboard/settings.json` using `file_put_contents()`.
+ *   - Writes settings to `settings.json` using `file_put_contents()`.
  *   - The dashboard page (`dashboard.php`) links to this page to allow
  *     administrators to update configuration without editing files.
  */
 
 session_start();
 if (!isset($_SESSION['username'])) {
-    header('Location: ../login.php');
+    header('Location: ./login.php');
     exit;
 }
 
-$base_url = "/dashboard";
-
 $page_title = 'Dashboard Settings';
-include '../includes/header.php';
-include '../includes/navbar.php';
+include './includes/header.php';
+include './includes/navbar.php';
 
 $settingsPath = __DIR__ . '/settings.json';
 $settings = [];
@@ -114,10 +112,10 @@ $azureSasToken = htmlspecialchars($settings['azure_sas_token'] ?? '');
         <div class="form-group">
             <label for="azure_sas_token">Azure SAS token</label>
             <input type="text" id="azure_sas_token" name="azure_sas_token" class="form-control" value="<?php echo $azureSasToken; ?>" placeholder="?sv=...&ss=...&srt=...&sp=...">
-            <small class="form-text text-muted">Leave blank to keep saving locally in dashboard/storage.</small>
+            <small class="form-text text-muted">Leave blank to keep saving locally in storage.</small>
         </div>
         <button type="submit" class="btn btn-primary">Save settings</button>
     </form>
 </div>
 
-<?php include '../includes/footer.html'; ?>
+<?php include './includes/footer.html'; ?>

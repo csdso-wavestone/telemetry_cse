@@ -8,14 +8,14 @@
  *
  * Behavior:
  *   - When Azure Blob Storage is configured, the dashboard history
- *     is fetched from Azure rather than from local `dashboard/storage`.
+ *     is fetched from Azure rather than from local `storage`.
  *   - If Azure is not configured or if blob access fails, local storage
  *     is used as a fallback.
  *   - A modification in Azure Blob Storage is reflected automatically
  *     in the dashboard when the user loads history or views a file.
  *
  * Interconnections:
- *   - Reads `dashboard/settings.json` to detect Azure blob config.
+ *   - Reads `settings.json` to detect Azure blob config.
  *   - Uses Azure REST endpoints to list blobs and fetch blob content.
  *   - Falls back to local storage when Azure is unavailable.
  */
@@ -26,8 +26,6 @@ if (!isset($_SESSION['username'])) {
     echo json_encode(['error' => 'authentication required']);
     exit;
 }
-
-$base_url = "/dashboard";
 
 $settingsPath = __DIR__ . '/settings.json';
 $azureBlobUrl = '';

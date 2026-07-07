@@ -11,9 +11,9 @@
  *   history.php, maintenance.php, store_data.php).
  *
  * Interconnections:
- *   - Includes `../includes/header.php` and `../includes/navbar.php`
+ *   - Includes `./includes/header.php` and `./includes/navbar.php`
  *     to reuse site-wide layout and session initialization.
- *   - The JavaScript client `js/dashboard.js` calls:
+ *   - The JavaScript client `assets/js/dashboard.js` calls:
  *       - `api_fetch.php` to fetch live reactor JSON and trigger
  *         saving of that JSON as files (or to Azure blob storage)
  *       - `history.php` to list and retrieve saved JSON files
@@ -29,15 +29,13 @@
 
 session_start();
 if (!isset($_SESSION['username'])) {
-    header('Location: ../login.php');
+    header('Location: ./login.php');
     exit;
 }
 
-$base_url = "/dashboard";
-
 $page_title = 'Reactor Dashboard';
-include '../includes/header.php';
-include '../includes/navbar.php';
+include './includes/header.php';
+include './includes/navbar.php';
 ?>
 
 <div class="container py-4">
@@ -249,6 +247,6 @@ include '../includes/navbar.php';
     </div>
 </div>
 
-<script src="js/dashboard.js"></script>
+<script src="assets/js/dashboard.js"></script>
 
-<?php include '../includes/footer.html'; ?>
+<?php include './includes/footer.html'; ?>

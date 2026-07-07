@@ -1,5 +1,5 @@
 /**
- * js/dashboard.js
+ * assets/js/dashboard.js
  *
  * Purpose:
  *   Client-side behavior for the Reactor Monitoring dashboard. This
@@ -11,7 +11,7 @@
  *
  * Interconnections:
  *   - `api_fetch.php` returns live JSON and persists snapshots to
- *     `dashboard/storage` (or to Azure when configured).
+ *     `storage` (or to Azure when configured).
  *   - `history.php` provides file listings and file contents.
  *   - `maintenance.php` handles GET/POST of maintenance notes.
  */

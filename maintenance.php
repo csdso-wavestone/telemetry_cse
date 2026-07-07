@@ -7,7 +7,7 @@
  *   the dashboard UI. Notes are persisted to `dashboard/maintenance.json`.
  *
  * Interconnections:
- *   - The dashboard client in `js/dashboard.js` POSTs new notes to this
+ *   - The dashboard client in `assets/js/dashboard.js` POSTs new notes to this
  *     endpoint and reads the saved list to render the maintenance plan.
  *   - This is intentionally simple and file-backed for ease of local
  *     development; in production you would likely store notes in a DB.
@@ -19,8 +19,6 @@ if (!isset($_SESSION['username'])) {
     echo json_encode(['error' => 'authentication required']);
     exit;
 }
-
-$base_url = "/dashboard";
 
 $maintenancePath = __DIR__ . '/maintenance.json';
 

@@ -15,7 +15,7 @@ function assertTrue($condition, $message)
 
 function loadSettings()
 {
-    $settingsFile = __DIR__ . '/../dashboard/settings.json';
+    $settingsFile = __DIR__ . '/../settings.json';
     if (!file_exists($settingsFile)) {
         return [];
     }
@@ -27,7 +27,7 @@ $settings = loadSettings();
 $azureBlobUrl = trim($settings['azure_blob_url'] ?? '');
 $azureSasToken = trim($settings['azure_sas_token'] ?? '');
 if ($azureBlobUrl === '' || $azureSasToken === '') {
-    echo "Skipping Azure blob test because dashboard/settings.json has no Azure configuration.\n";
+    echo "Skipping Azure blob test because settings.json has no Azure configuration.\n";
     exit(0);
 }
 

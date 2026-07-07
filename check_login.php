@@ -20,7 +20,7 @@ else{
     if (mysqli_num_rows ($result) > 0){
         $row = mysqli_fetch_assoc($result);
         $_SESSION['username'] = $row['users_username'];
-        header('Location: dashboard/dashboard.php');
+        header('Location: dashboard.php');
         exit;
     }
     else{
