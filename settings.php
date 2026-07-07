@@ -19,15 +19,16 @@
  *     administrators to update configuration without editing files.
  */
 
-session_start();
+include './includes/header.php';
+include './includes/navbar.php';
+
 if (!isset($_SESSION['username'])) {
     header('Location: ./login.php');
     exit;
 }
 
 $page_title = 'Dashboard Settings';
-include './includes/header.php';
-include './includes/navbar.php';
+
 
 $settingsPath = __DIR__ . '/settings.json';
 $settings = [];
