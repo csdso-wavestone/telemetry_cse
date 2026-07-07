@@ -30,8 +30,6 @@ else{
     }
 
 mysqli_close($connection);
-
-    }
 ?>
 <section id="hero" class="hero section">
     <div class="hero-bg">
@@ -68,8 +66,5 @@ mysqli_close($connection);
 }
 
 include 'includes/footer.html';
-
-
-
 ?>
 
